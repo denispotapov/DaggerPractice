@@ -2,6 +2,7 @@ package com.example.daggerpractice.di
 
 import android.app.Application
 import android.graphics.drawable.Drawable
+import androidx.annotation.NonNull
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
