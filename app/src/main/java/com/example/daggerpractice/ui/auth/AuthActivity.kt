@@ -3,14 +3,13 @@ package com.example.daggerpractice.ui.auth
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.RequestManager
 import com.example.daggerpractice.R
 import com.example.daggerpractice.viewmodels.ViewModelProviderFactory
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_auth.*
 import javax.inject.Inject
-
-const val TAG = "AuthActivity"
 
 class AuthActivity : DaggerAppCompatActivity() {
 
@@ -30,6 +29,7 @@ class AuthActivity : DaggerAppCompatActivity() {
         val viewModel = ViewModelProvider(this, providerFactory).get(AuthViewModel::class.java)
         setLogo()
         viewModel.log()
+        viewModel.api()
     }
 
     private fun setLogo() {
