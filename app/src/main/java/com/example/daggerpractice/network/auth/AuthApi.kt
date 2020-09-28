@@ -1,11 +1,13 @@
 package com.example.daggerpractice.network.auth
 
-import okhttp3.ResponseBody
-import retrofit2.Call
+import com.example.daggerpractice.models.User
+import io.reactivex.Flowable
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface AuthApi {
 
-    @GET
-    fun getFakeStuff(): Call<ResponseBody>
+    @GET("users/{id}")
+    fun getUser(@Path("id") id: Int): Flowable<User>
+
 }

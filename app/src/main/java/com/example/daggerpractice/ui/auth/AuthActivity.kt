@@ -30,6 +30,7 @@ class AuthActivity : DaggerAppCompatActivity() {
         setLogo()
         viewModel.log()
         viewModel.api()
+        viewModel.getUser()
     }
 
     private fun setLogo() {
