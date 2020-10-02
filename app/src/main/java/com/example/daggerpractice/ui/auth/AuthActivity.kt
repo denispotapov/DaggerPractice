@@ -44,7 +44,7 @@ class AuthActivity : DaggerAppCompatActivity(), View.OnClickListener {
     }
 
     private fun subscribeObservers() {
-        viewModel.observeUser().observe(this, object : Observer<AuthResource<User>> {
+        viewModel.observeAuthState().observe(this, object : Observer<AuthResource<User>> {
             override fun onChanged(user: AuthResource<User>?) {
                 if (user != null) {
                     when (user) {
