@@ -1,5 +1,6 @@
 package com.example.daggerpractice.ui.auth
 
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.text.TextUtils
@@ -11,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.RequestManager
 import com.example.daggerpractice.R
 import com.example.daggerpractice.models.User
+import com.example.daggerpractice.ui.main.MainActivity
 import com.example.daggerpractice.util.TAG
 import com.example.daggerpractice.viewmodels.ViewModelProviderFactory
 import dagger.android.support.DaggerAppCompatActivity
@@ -52,6 +54,7 @@ class AuthActivity : DaggerAppCompatActivity(), View.OnClickListener {
                         is AuthResource.Authenticated -> {
                             showProgressBar(false)
                             Log.d(TAG, "OnChanged: LOGIN SUCCESS ${user.data}")
+                            onLoginSuccess()
                         }
                         is AuthResource.Error -> {
                             showProgressBar(false)
@@ -66,6 +69,12 @@ class AuthActivity : DaggerAppCompatActivity(), View.OnClickListener {
                 }
             }
         })
+    }
+
+    private fun onLoginSuccess() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private fun showProgressBar(isShowing: Boolean) {
