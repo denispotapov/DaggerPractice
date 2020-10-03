@@ -1,0 +1,18 @@
+package com.example.daggerpractice.di.main
+
+import androidx.lifecycle.ViewModel
+import com.example.daggerpractice.di.ViewModelKey
+import com.example.daggerpractice.ui.auth.AuthViewModel
+import com.example.daggerpractice.ui.main.profile.ProfileViewModel
+import dagger.Binds
+import dagger.Module
+import dagger.multibindings.IntoMap
+
+@Module
+abstract class MainViewModelsModule {
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ProfileViewModel::class)
+    abstract fun bindProfileViewModel(viewModel: ProfileViewModel): ViewModel
+}
