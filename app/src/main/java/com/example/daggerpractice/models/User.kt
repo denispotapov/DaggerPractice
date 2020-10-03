@@ -1,8 +1,3 @@
 package com.example.daggerpractice.models
 
-import com.google.gson.annotations.SerializedName
-
-data class User(@SerializedName("id") val id: Int?,
-                @SerializedName("username") val username: String?,
-                @SerializedName("email") val email: String?,
-                @SerializedName("website") val website: String?)
+data class User(val id: Int?, val username: String?, val email: String?, val website: String?)
