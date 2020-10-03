@@ -3,7 +3,6 @@ package com.example.daggerpractice.ui.auth
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.example.daggerpractice.SessionManager
 import com.example.daggerpractice.models.User
@@ -19,20 +18,20 @@ class AuthViewModel @Inject constructor(
 ) : ViewModel() {
 
     fun authenticateWithId(userId: Int) {
-Log.d(TAG, "authenticateWithId: attempting to login.")
-       sessionManager.authenticateWithId(queryUserId(userId))
+        Log.d(TAG, "authenticateWithId: attempting to login.")
+        sessionManager.authenticateWithId(queryUserId(userId))
     }
 
     private fun queryUserId(userId: Int): LiveData<AuthResource<User>> {
         return LiveDataReactiveStreams.fromPublisher(
             authApi.getUser(userId)
-                    // instead of calling onError, do this
+                // instead of calling onError, do this
                 .onErrorReturn(object : Function<Throwable, User> {
                     override fun apply(t: Throwable): User {
                         return User(-1, null, null, null)
                     }
                 })
-                    // wrap User object in Authresource
+                // wrap User object in AuthResource
                 .map(object : Function<User, AuthResource<User>> {
                     override fun apply(user: User): AuthResource<User> {
                         if (user.id == -1) {

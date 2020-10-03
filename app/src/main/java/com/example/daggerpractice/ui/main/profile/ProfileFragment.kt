@@ -60,9 +60,9 @@ class ProfileFragment : DaggerFragment() {
         username.text = "error"
         website.text = "error"
     }
-    private fun setUserDetails(data: User) {
-        email.text = data.email
-        username.text = data.username
-        website.text = data.website
+    private fun setUserDetails(data: User?) {
+        email.text = data?.email
+        username.text = data?.username
+        website.text = data?.website
     }
 }
