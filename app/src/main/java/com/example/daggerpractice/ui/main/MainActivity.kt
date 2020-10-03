@@ -6,6 +6,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import com.example.daggerpractice.BaseActivity
 import com.example.daggerpractice.R
+import com.example.daggerpractice.ui.main.profile.ProfileFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
@@ -15,6 +16,14 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Toast.makeText(this, "MainActivity", Toast.LENGTH_SHORT).show()
+
+        testFragment()
+    }
+
+    private fun testFragment() {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.main_container, ProfileFragment())
+            .commit()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
