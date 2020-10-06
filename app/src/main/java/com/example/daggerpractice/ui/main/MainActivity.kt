@@ -4,26 +4,28 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.core.view.GravityCompat
+import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
 import com.example.daggerpractice.BaseActivity
 import com.example.daggerpractice.R
-import com.example.daggerpractice.ui.main.posts.PostsFragments
-import com.example.daggerpractice.ui.main.profile.ProfileFragment
+import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
     private val TAG = "MainActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        testFragment()
+        init()
     }
 
-    private fun testFragment() {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.main_container, PostsFragments())
-            .commit()
+    private fun init() {
+        val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+        NavigationUI.setupActionBarWithNavController(this, navController, drawer_layout)
+        NavigationUI.setupWithNavController(nav_view, navController)
+        nav_view.setNavigationItemSelectedListener(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -38,7 +40,24 @@ class MainActivity : BaseActivity() {
                 sessionManager.logOut()
                 Toast.makeText(this, "Сменить Activity", Toast.LENGTH_SHORT).show()
                 return true
-            } else -> super.onContextItemSelected(item)
+            }
+            else -> super.onContextItemSelected(item)
         }
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.nav_profile -> {
+                Navigation.findNavController(this, R.id.nav_host_fragment)
+                    .navigate(R.id.profileScreen)
+            }
+            R.id.nav_posts -> {
+                Navigation.findNavController(this, R.id.nav_host_fragment)
+                    .navigate(R.id.postsScreen)
+            }
+        }
+        item.isChecked = true
+        drawer_layout.closeDrawer(GravityCompat.START)
+        return true
     }
 }

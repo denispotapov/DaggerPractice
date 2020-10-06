@@ -33,6 +33,7 @@ class PostsRecyclerAdapter :
     fun setPosts(posts: List<Post>?) {
         if (posts != null) {
             this.posts = posts
+            notifyDataSetChanged()
         }
     }
 
@@ -50,8 +51,6 @@ class PostDiffCallback : DiffUtil.ItemCallback<Post>() {
     }
 
     override fun areContentsTheSame(oldItem: Post, newItem: Post): Boolean {
-        return oldItem.id == newItem.id && oldItem.userId == newItem.userId &&
-                oldItem.title == newItem.title &&
-                oldItem.body == newItem.body
+        return oldItem.title == newItem.title && oldItem.body == newItem.body
     }
 }
