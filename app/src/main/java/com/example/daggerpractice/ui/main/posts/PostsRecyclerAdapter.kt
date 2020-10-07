@@ -33,10 +33,9 @@ class PostsRecyclerAdapter :
     fun setPosts(posts: List<Post>?) {
         if (posts != null) {
             this.posts = posts
-            notifyDataSetChanged()
+            //notifyDataSetChanged()
         }
     }
-
     inner class PostHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val title: TextView = itemView.title
         fun bind(post: Post) {
@@ -49,7 +48,6 @@ class PostDiffCallback : DiffUtil.ItemCallback<Post>() {
     override fun areItemsTheSame(oldItem: Post, newItem: Post): Boolean {
         return oldItem.id == newItem.id
     }
-
     override fun areContentsTheSame(oldItem: Post, newItem: Post): Boolean {
         return oldItem.title == newItem.title
     }

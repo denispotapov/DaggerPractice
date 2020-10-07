@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.RequestManager
 import com.example.daggerpractice.R
+import com.example.daggerpractice.models.TestClass
 import com.example.daggerpractice.models.User
 import com.example.daggerpractice.ui.main.MainActivity
 import com.example.daggerpractice.util.TAG
@@ -18,6 +19,7 @@ import com.example.daggerpractice.viewmodels.ViewModelProviderFactory
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_auth.*
 import javax.inject.Inject
+import javax.inject.Named
 
 class AuthActivity : DaggerAppCompatActivity(), View.OnClickListener {
 
@@ -29,6 +31,14 @@ class AuthActivity : DaggerAppCompatActivity(), View.OnClickListener {
 
     @Inject
     lateinit var providerFactory: ViewModelProviderFactory
+
+    @Inject
+    @Named("app-test")
+    lateinit var testNumber1: TestClass
+
+    @Inject
+    @Named("auth-test")
+    lateinit var testNumber2: TestClass
 
     lateinit var viewModel: AuthViewModel
 
@@ -42,6 +52,9 @@ class AuthActivity : DaggerAppCompatActivity(), View.OnClickListener {
         subscribeObservers()
         setLogo()
         login_button.setOnClickListener(this)
+
+        Log.d(TAG, "onCreate: $testNumber1")
+        Log.d(TAG, "onCreate: $testNumber2")
 
     }
 
