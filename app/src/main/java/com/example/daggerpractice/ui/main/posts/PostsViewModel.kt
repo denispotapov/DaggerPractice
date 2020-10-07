@@ -15,7 +15,7 @@ class PostsViewModel @Inject constructor(
     private val mainApi: MainApi
 ) : ViewModel() {
 
-    private var posts: MediatorLiveData<Resource<List<Post>>>? = null
+    var posts: MediatorLiveData<Resource<List<Post>>>? = null
 
     fun observePost(): LiveData<Resource<List<Post>>> {
         if (posts == null) {

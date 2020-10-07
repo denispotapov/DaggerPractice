@@ -51,6 +51,6 @@ class PostDiffCallback : DiffUtil.ItemCallback<Post>() {
     }
 
     override fun areContentsTheSame(oldItem: Post, newItem: Post): Boolean {
-        return oldItem.title == newItem.title && oldItem.body == newItem.body
+        return oldItem.title == newItem.title
     }
 }
